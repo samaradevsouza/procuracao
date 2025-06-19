@@ -90,15 +90,12 @@
             <label>UF de Nascimento:</label>
             <input type="text" id="ufNascimento" required>
         </div>
-
-        <div class="input-group hidden">
+        
+        <div class="input-group" id="grupoPais">
             <label>Nome do Pai:</label>
-            <input type="text" id="nomePai" required>
-        </div>
-
-        <div class="input-group hidden">
+            <input type="text" id="nomePai">
             <label>Nome da Mãe:</label>
-            <input type="text" id="nomeMae" required>
+            <input type="text" id="nomeMae">
         </div>
 
         <div class="input-group hidden" id="grupoConjuge">
@@ -165,18 +162,12 @@
     </form>
 
     <script>
-
-        const lowercaseExceptions = new Set([
-            "de", "da", "do", "e", "em", "a", "as", "os", "para", "com", "dos", "das"
-        ]);
-
         const capitalizeWords = (string) =>
             string
-                .toLowerCase()
+                .toUpperCase()
                 .split(" ")
                 .map((word, index, arr) => {
                     if (
-                        lowercaseExceptions.has(word) &&
                         index !== 0 &&
                         index !== arr.length - 1
                     ) {
