@@ -57,7 +57,7 @@
         </div>
 
         <div class="input-group">
-            <label>Nome Completo:</label>
+            <label>Nome Completo do(a) requerente:</label>
             <input type="text" id="nome" required>
         </div>
 
@@ -165,6 +165,28 @@
     </form>
 
     <script>
+
+        const lowercaseExceptions = new Set([
+            "de", "da", "do", "e", "em", "a", "as", "os", "para", "com", "dos", "das"
+        ]);
+
+        const capitalizeWords = (string) =>
+            string
+                .toLowerCase()
+                .split(" ")
+                .map((word, index, arr) => {
+                    if (
+                        lowercaseExceptions.has(word) &&
+                        index !== 0 &&
+                        index !== arr.length - 1
+                    ) {
+                        return word;
+                    } else {
+                        return word.charAt(0).toUpperCase() + word.slice(1);
+                    }
+                })
+                .join(" ");
+
         function atualizarCampos() {
             const tipo = document.getElementById('tipoProcesso').value;
 
@@ -207,7 +229,7 @@
             const tipoProcesso = document.getElementById("tipoProcesso").value;
             const portugues = document.getElementById("portugues").value;
             const genero = document.querySelector('input[name="genero"]:checked').value;
-            const nome = document.getElementById("nome").value;
+            const nomeCru = document.getElementById("nome").value;
             const nacionalidade = document.getElementById("nacionalidade").value;
             const estadoCivil = document.getElementById("estadoCivil").value;
             const profissao = document.getElementById("profissao").value;
@@ -218,8 +240,8 @@
             const nomeMae = document.getElementById("nomeMae").value;
             const nomeConjuge = document.getElementById("nomeConjuge").value;
             const dataCasamento = document.getElementById("dataCasamento").value;
-            const nubente1 = document.getElementById("nubente1").value;
-            const nubente2 = document.getElementById("nubente2").value;
+            const nubente1Lower = document.getElementById("nubente1").value;
+            const nubente2Lower = document.getElementById("nubente2").value;
 
             const endereco = document.getElementById("endereco").value;
             const cidade = document.getElementById("cidade").value;
@@ -234,6 +256,10 @@
             const orgaoExpedidor = document.getElementById("orgaoExpedidor").value;
 
             const generoLetra = genero === "homem" ? "o" : "a";
+
+            const nome = capitalizeWords(nomeCru);
+            const nubente1 = capitalizeWords(nubente1Lower);
+            const nubente2 = capitalizeWords(nubente2Lower);
 
             let textoProcura = "";
 
@@ -250,7 +276,7 @@
             }
 
             if (tipoProcesso === "transcricao") {
-                textoProcura = `<strong>${nome}</strong>, ${nacionalidade}, no estado civil de ${estadoCivil}, ${profissao}, nascid${generoLetra} em ${dataNascimento}, na cidade de ${cidadeNascimento} – ${ufNascimento}, filh${generoLetra} de ${nomePai} e ${nomeMae}, residente em ${residencia}, portador${genero === "homem" ? "" : "a"} do documento de identificação (${tipoDocumento}) nº ${documento}, expedido em ${dataExpedicao} pelo órgão ${orgaoExpedidor}, constitui como sua bastante procuradora a Dra. CARLA OSSUNA, advogada inscrita na Ordem dos Advogados de Portugal, com cédula profissional sob o Nº 64201L, com morada profissional na Rua Febo Muniz, 27B, Edifício LACS Anjos - Código Postal 1150-152, Lisboa - Portugal, a quem confere poderes especiais e necessários para ${generoLetra} representar perante a Conservatória dos Registos Centrais e/ou Conservatória dos Registos Civis e suas extensões, para proceder à Transcrição de Casamento ocorrido no estrangeiro entre ${nubente1} e ${nubente2}, de meus ${portugues}, podendo para o feito declarar, praticar e assinar tudo o que seja necessário ao indicado fim, inclusive podendo desistir do pedido, prestar declarações e substabelecer os poderes que lhe foram conferidos.`
+                textoProcura = `<strong>${nome}</strong>, ${nacionalidade}, no estado civil de ${estadoCivil}, ${profissao}, nascid${generoLetra} em ${dataNascimento}, na cidade de ${cidadeNascimento} – ${ufNascimento}, residente em ${residencia}, portador${genero === "homem" ? "" : "a"} do documento de identificação (${tipoDocumento}) nº ${documento}, expedido em ${dataExpedicao} pelo órgão ${orgaoExpedidor}, constitui como sua bastante procuradora a <strong>Dra. CARLA OSSUNA</strong>, advogada inscrita na Ordem dos Advogados de Portugal, com cédula profissional sob o Nº 64201L, com morada profissional na Rua Febo Muniz, 27B, Edifício LACS Anjos - Código Postal 1150-152, Lisboa - Portugal, <strong>a quem confere poderes especiais e necessários para ${generoLetra} representar perante a Conservatória dos Registos Centrais e/ou Conservatória dos Registos Civis e suas extensões, para proceder à Transcrição de Casamento ocorrido no estrangeiro entre ${nubente1} e ${nubente2}</strong>, de meus ${portugues}, podendo para o feito declarar, praticar e assinar tudo o que seja necessário ao indicado fim, inclusive podendo desistir do pedido, prestar declarações e substabelecer os poderes que lhe foram conferidos.`
             }
 
             const conteudo = `
