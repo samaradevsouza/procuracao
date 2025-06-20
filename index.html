@@ -7,11 +7,6 @@
     <title>Procuração - Cidadania Portuguesa</title>
     <link rel="icon" href="favicon.png" />
     <link rel="stylesheet" href="style.css">
-    <style>
-        .hidden {
-            display: none;
-        }
-    </style>
 </head>
 
 <body>
@@ -24,13 +19,15 @@
                 <option value="">Selecione</option>
                 <option value="netos">Netos</option>
                 <option value="filhosMaiores">Filhos MAIORES</option>
+                <option value="filhosMenores">Filhos MENORES</option>
                 <option value="matrimonio">Matrimônio</option>
                 <option value="transcricao">Transcrição</option>
+
             </select>
         </div>
 
         <div class="input-group">
-            <label>Gênero do requerente:</label>
+            <label>Gênero do(a) requerente:</label>
             <div class="radio-group">
                 <label><input type="radio" name="genero" value="homem" required> Homem</label>
                 <label><input type="radio" name="genero" value="mulher"> Mulher</label>
@@ -56,252 +53,328 @@
             <input type="text" id="nubente2">
         </div>
 
-        <div class="input-group">
-            <label>Nome Completo do(a) requerente:</label>
-            <input type="text" id="nome" required>
-        </div>
+        <div id="procuracoesNormais" class="hidden">
+            <div class="input-group">
+                <label>Nome Completo do(a) requerente:</label>
+                <input type="text" id="nome" required>
+            </div>
 
-        <div class="input-group">
-            <label>Nacionalidade:</label>
-            <input type="text" id="nacionalidade" required>
-        </div>
+            <div class="input-group">
+                <label>Nacionalidade:</label>
+                <input type="text" id="nacionalidade" required>
+            </div>
 
-        <div class="input-group">
-            <label>Estado Civil:</label>
-            <input type="text" id="estadoCivil" required>
-        </div>
+            <div class="input-group">
+                <label>Estado Civil:</label>
+                <input type="text" id="estadoCivil" required>
+            </div>
 
-        <div class="input-group">
-            <label>Profissão:</label>
-            <input type="text" id="profissao" required>
-        </div>
+            <div class="input-group">
+                <label>Profissão:</label>
+                <input type="text" id="profissao" required>
+            </div>
 
-        <div class="input-group">
-            <label>Data de Nascimento:</label>
-            <input type="text" id="dataNascimento" placeholder="DD/MM/AAAA" required>
-        </div>
+            <div class="input-group">
+                <label>Data de Nascimento:</label>
+                <input type="text" id="dataNascimento" placeholder="DD/MM/AAAA" required>
+            </div>
 
-        <div class="input-group">
-            <label>Cidade de Nascimento:</label>
-            <input type="text" id="cidadeNascimento" required>
-        </div>
+            <div class="input-group">
+                <label>Cidade de Nascimento:</label>
+                <input type="text" id="cidadeNascimento" required>
+            </div>
 
-        <div class="input-group">
-            <label>UF de Nascimento:</label>
-            <input type="text" id="ufNascimento" required>
-        </div>
-        
-        <div class="input-group" id="grupoPais">
-            <label>Nome do Pai:</label>
-            <input type="text" id="nomePai">
-            <label>Nome da Mãe:</label>
-            <input type="text" id="nomeMae">
-        </div>
+            <div class="input-group">
+                <label>UF de Nascimento:</label>
+                <input type="text" id="ufNascimento" required>
+            </div>
 
-        <div class="input-group hidden" id="grupoConjuge">
-            <label>Nome do Cônjuge:</label>
-            <input type="text" id="nomeConjuge">
-        </div>
+            <div class="input-group" id="grupoPais">
+                <label>Nome do Pai:</label>
+                <input type="text" id="nomePai">
+                <label>Nome da Mãe:</label>
+                <input type="text" id="nomeMae">
+            </div>
 
-        <div class="input-group hidden" id="grupoDataCasamento">
-            <label>Data do Casamento:</label>
-            <input type="text" id="dataCasamento" placeholder="DD/MM/AAAA">
-        </div>
+            <div class="input-group hidden" id="grupoConjuge">
+                <label>Nome do Cônjuge:</label>
+                <input type="text" id="nomeConjuge">
+            </div>
 
-        <div class="input-group">
-            <label>Endereço:</label>
-            <input type="text" id="endereco" required>
-        </div>
+            <div class="input-group hidden" id="grupoDataCasamento">
+                <label>Data do Casamento:</label>
+                <input type="text" id="dataCasamento" placeholder="DD/MM/AAAA">
+            </div>
 
-        <div class="input-group">
-            <label>Cidade:</label>
-            <input type="text" id="cidade" required>
-        </div>
+            <div class="input-group">
+                <label>Endereço:</label>
+                <input type="text" id="endereco" required>
+            </div>
 
-        <div class="input-group">
-            <label>UF:</label>
-            <input type="text" id="uf" required>
-        </div>
+            <div class="input-group">
+                <label>Cidade:</label>
+                <input type="text" id="cidade" required>
+            </div>
 
-        <div class="input-group">
-            <label>CEP:</label>
-            <input type="text" id="cep" required>
-        </div>
+            <div class="input-group">
+                <label>UF:</label>
+                <input type="text" id="uf" required>
+            </div>
 
-        <div class="input-group">
-            <label>País:</label>
-            <input type="text" id="pais" required>
-        </div>
+            <div class="input-group">
+                <label>CEP:</label>
+                <input type="text" id="cep" required>
+            </div>
 
-        <div class="input-group">
-            <label>Tipo de Documento:</label>
-            <div class="radio-group">
-                <label><input type="radio" name="tipoDocumento" value="RG" required> RG</label>
-                <label><input type="radio" name="tipoDocumento" value="CNH"> CNH</label>
-                <label><input type="radio" name="tipoDocumento" value="Passaporte"> Passaporte</label>
+            <div class="input-group">
+                <label>País:</label>
+                <input type="text" id="pais" required>
+            </div>
+
+                <div class="input-group">
+                    <label>Tipo de Documento:</label>
+                    <select name="tipoDocumento" id="tipoDocumento">
+                        <option value="">Selecione</option>
+                        <option value="RG">RG</option>
+                        <option value="Passaporte">Passaporte</option>
+                        <option value="CNH">CNH</option>
+                    </select>
+                </div>
+
+            <div class="input-group">
+                <label>Número do Documento:</label>
+                <input type="text" id="documento" required>
+            </div>
+
+            <div class="input-group">
+                <label>Data de Expedição:</label>
+                <input type="text" id="dataExpedicao" placeholder="DD/MM/AAAA" required>
+            </div>
+
+            <div class="input-group">
+                <label>Órgão Expedidor:</label>
+                <input type="text" id="orgaoExpedidor" required>
             </div>
         </div>
 
-        <div class="input-group">
-            <label>Número do Documento:</label>
-            <input type="text" id="documento" required>
+        <div class="hidden" id="inputFilhosMenores">
+            <div class="input-group" id="grupoFilhosMenores">
+                <label>Tipo da procuração:</label>
+                <select name="tipoProcuracao" id="tipoProcuracao">
+                    <option value="">Selecione</option>
+                    <option value="pm">Pai e mãe</option>
+                    <option value="m">Só mãe</option>
+                    <option value="p">Só pai</option>
+                </select>
+            </div>
+
+            <div id="mae" class="hidden">
+                <center>
+                    <p class="info">Dados da mãe</p>
+                </center>
+                <div class="input-group">
+                    <label>Nome Completo da mãe:</label>
+                    <input type="text" id="nomeMaeMenor">
+                </div>
+
+                <div class="input-group">
+                    <label>Nacionalidade:</label>
+                    <input type="text" id="nacionalidadeMae">
+                </div>
+
+                <div class="input-group">
+                    <label>Estado Civil:</label>
+                    <input type="text" id="estadoCivilMae">
+                </div>
+
+                <div class="input-group">
+                    <label>Profissão:</label>
+                    <input type="text" id="profissaoMae">
+                </div>
+
+                <div class="input-group">
+                    <label>Endereço:</label>
+                    <input type="text" id="enderecoMae">
+                </div>
+
+                <div class="input-group">
+                    <label>Cidade:</label>
+                    <input type="text" id="cidadeMae">
+                </div>
+
+                <div class="input-group">
+                    <label>UF:</label>
+                    <input type="text" id="ufMae">
+                </div>
+
+                <div class="input-group">
+                    <label>CEP:</label>
+                    <input type="text" id="cepMae">
+                </div>
+
+                <div class="input-group">
+                    <label>País:</label>
+                    <input type="text" id="paisMae">
+                </div>
+
+                <div class="input-group">
+                    <label>Tipo de Documento:</label>
+                    <select name="tipoDocumento" id="tipoDocumentoMae">
+                        <option value="">Selecione</option>
+                        <option value="RG">RG</option>
+                        <option value="Passaporte">Passaporte</option>
+                        <option value="CNH">CNH</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Número do Documento:</label>
+                    <input type="text" id="documentoMae">
+                </div>
+
+                <div class="input-group">
+                    <label>Data de Expedição:</label>
+                    <input type="text" id="dataExpedicaoMae" placeholder="DD/MM/AAAA">
+                </div>
+
+                <div class="input-group">
+                    <label>Órgão Expedidor:</label>
+                    <input type="text" id="orgaoExpedidorMae">
+                </div>
+
+            </div>
+
+            <div id="pai" class="hidden">
+                <center>
+                    <p class="info">Dados do Pai</p>
+                </center>
+                <div class="input-group">
+                    <label>Nome Completo do pai:</label>
+                    <input type="text" id="nomePaiMenor">
+                </div>
+
+                <div class="input-group">
+                    <label>Nacionalidade:</label>
+                    <input type="text" id="nacionalidadePai">
+                </div>
+
+                <div class="input-group">
+                    <label>Estado Civil:</label>
+                    <input type="text" id="estadoCivilPai">
+                </div>
+
+                <div class="input-group">
+                    <label>Profissão:</label>
+                    <input type="text" id="profissaoPai">
+                </div>
+
+                <div class="input-group">
+                    <label>Endereço:</label>
+                    <input type="text" id="enderecoPai">
+                </div>
+
+                <div class="input-group">
+                    <label>Cidade:</label>
+                    <input type="text" id="cidadePai">
+                </div>
+
+                <div class="input-group">
+                    <label>UF:</label>
+                    <input type="text" id="ufPai">
+                </div>
+
+                <div class="input-group">
+                    <label>CEP:</label>
+                    <input type="text" id="cepPai">
+                </div>
+
+                <div class="input-group">
+                    <label>País:</label>
+                    <input type="text" id="paisPai">
+                </div>
+
+                <div class="input-group">
+                    <label>Tipo de Documento:</label>
+                    <select name="tipoDocumento" id="tipoDocumentoPai">
+                        <option value="">Selecione</option>
+                        <option value="RG">RG</option>
+                        <option value="Passaporte">Passaporte</option>
+                        <option value="CNH">CNH</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Número do Documento:</label>
+                    <input type="text" id="documentoPai">
+                </div>
+
+                <div class="input-group">
+                    <label>Data de Expedição:</label>
+                    <input type="text" id="dataExpedicaoPai" placeholder="DD/MM/AAAA">
+                </div>
+
+                <div class="input-group">
+                    <label>Órgão Expedidor:</label>
+                    <input type="text" id="orgaoExpedidorPai">
+                </div>
+
+            </div>
+
+            <p class="info">Dados do menor</p>
+
+            <div id="filhoMenor">
+                <div class="input-group">
+                    <label>Nome Completo do(a) requerente:</label>
+                    <input type="text" id="nomeMenor">
+                </div>
+
+                <div class="input-group">
+                    <label>Data de Nascimento:</label>
+                    <input type="text" id="dataNascimentoMenor" placeholder="DD/MM/AAAA">
+                </div>
+
+                <div class="input-group">
+                    <label>Cidade de Nascimento:</label>
+                    <input type="text" id="cidadeNascimentoMenor">
+                    <div class="input-group">
+                        <label>Estado de Nascimento:</label>
+                        <input type="text" id="estadoNascimento">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Tipo de Documento:</label>
+                    <select name="tipoDocumento" id="tipoDocumentoMenor">
+                        <option value="">Selecione</option>
+                        <option value="RG">RG</option>
+                        <option value="Passaporte">Passaporte</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Número do Documento:</label>
+                    <input type="text" id="documentoMenor">
+                </div>
+
+                                <div class="input-group">
+                    <label>Órgão Expedidor:</label>
+                    <input type="text" id="orgaoExpedidorMenor">
+                </div>
+
+                <div class="input-group">
+                    <label>Data de Expedição:</label>
+                    <input type="text" id="dataDocumentoMenor" placeholder="DD/MM/AAAA">
+                </div>
+            </div>
+
+
         </div>
 
-        <div class="input-group">
-            <label>Data de Expedição:</label>
-            <input type="text" id="dataExpedicao" placeholder="DD/MM/AAAA" required>
-        </div>
-
-        <div class="input-group">
-            <label>Órgão Expedidor:</label>
-            <input type="text" id="orgaoExpedidor" required>
-        </div>
 
         <button type="button" onclick="gerarDocumento()">Gerar Documento</button>
         <button type="reset" onclick="atualizarCampos()">Limpar</button>
     </form>
 
-    <script>
-        const capitalizeWords = (string) =>
-            string
-                .toUpperCase()
-                .split(" ")
-                .map((word, index, arr) => {
-                    if (
-                        index !== 0 &&
-                        index !== arr.length - 1
-                    ) {
-                        return word;
-                    } else {
-                        return word.charAt(0).toUpperCase() + word.slice(1);
-                    }
-                })
-                .join(" ");
-
-        function atualizarCampos() {
-            const tipo = document.getElementById('tipoProcesso').value;
-
-            const grupoPortugues = document.getElementById('grupoPortugues');
-            const grupoConjuge = document.getElementById('grupoConjuge');
-            const grupoDataCasamento = document.getElementById('grupoDataCasamento');
-            const grupoNubentes = document.getElementById('grupoNubentes');
-            const grupoPais = document.getElementById('grupoPais');
-
-            if (tipo === 'filhosMaiores') {
-                grupoPortugues.classList.remove('hidden');
-                grupoNubentes.classList.add('hidden');
-                grupoPais.classList.remove('hidden');
-            } else if (tipo === 'netos') {
-                grupoPortugues.classList.add('hidden');
-                grupoNubentes.classList.add('hidden');
-                grupoPais.classList.remove('hidden');
-            } else if (tipo === 'matrimonio') {
-                grupoConjuge.classList.remove('hidden');
-                grupoDataCasamento.classList.remove('hidden');
-                grupoPortugues.classList.add('hidden');
-                grupoNubentes.classList.add('hidden');
-                grupoPais.classList.remove('hidden');
-            } else if (tipo === 'transcricao') {
-                grupoPortugues.classList.remove('hidden');
-                grupoNubentes.classList.remove('hidden');
-                grupoConjuge.classList.add('hidden');
-                grupoDataCasamento.classList.add('hidden');
-                grupoPais.classList.add('hidden');
-            } else {
-                grupoPortugues.classList.add('hidden');
-                grupoNubentes.classList.add('hidden');
-                grupoConjuge.classList.add('hidden');
-                grupoDataCasamento.classList.add('hidden');
-                grupoPais.classList.remove('hidden');
-            }
-        }
-
-        function gerarDocumento() {
-            const tipoProcesso = document.getElementById("tipoProcesso").value;
-            const portugues = document.getElementById("portugues").value;
-            const genero = document.querySelector('input[name="genero"]:checked').value;
-            const nomeCru = document.getElementById("nome").value;
-            const nacionalidade = document.getElementById("nacionalidade").value;
-            const estadoCivil = document.getElementById("estadoCivil").value;
-            const profissao = document.getElementById("profissao").value;
-            const dataNascimento = document.getElementById("dataNascimento").value;
-            const cidadeNascimento = document.getElementById("cidadeNascimento").value;
-            const ufNascimento = document.getElementById("ufNascimento").value;
-            const nomePai = document.getElementById("nomePai").value;
-            const nomeMae = document.getElementById("nomeMae").value;
-            const nomeConjuge = document.getElementById("nomeConjuge").value;
-            const dataCasamento = document.getElementById("dataCasamento").value;
-            const nubente1Lower = document.getElementById("nubente1").value;
-            const nubente2Lower = document.getElementById("nubente2").value;
-
-            const endereco = document.getElementById("endereco").value;
-            const cidade = document.getElementById("cidade").value;
-            const uf = document.getElementById("uf").value;
-            const cep = document.getElementById("cep").value;
-            const pais = document.getElementById("pais").value;
-            const residencia = `${endereco}, ${cidade} - ${uf}, CEP ${cep}, ${pais}`;
-
-            const tipoDocumento = document.querySelector('input[name="tipoDocumento"]:checked').value;
-            const documento = document.getElementById("documento").value;
-            const dataExpedicao = document.getElementById("dataExpedicao").value;
-            const orgaoExpedidor = document.getElementById("orgaoExpedidor").value;
-
-            const generoLetra = genero === "homem" ? "o" : "a";
-
-            const nome = capitalizeWords(nomeCru);
-            const nubente1 = capitalizeWords(nubente1Lower);
-            const nubente2 = capitalizeWords(nubente2Lower);
-
-            let textoProcura = "";
-
-            if (tipoProcesso === "netos") {
-                textoProcura = `<strong>${nome}</strong>, ${nacionalidade}, no estado civil de ${estadoCivil}, ${profissao}, nascid${generoLetra} em ${dataNascimento}, na cidade de ${cidadeNascimento} – ${ufNascimento}, filh${generoLetra} de ${nomePai} e ${nomeMae}, residente em ${residencia}, portador${genero === "homem" ? "" : "a"} do documento de identificação (${tipoDocumento}) nº ${documento}, expedido em ${dataExpedicao} pelo órgão ${orgaoExpedidor}, constitui como sua bastante procuradora a <strong>Dra. CARLA OSSUNA</strong>, advogada inscrita na Ordem dos Advogados de Portugal, com cédula profissional sob o Nº 64201L, com morada profissional na Rua Febo Muniz, 27B, Edifício LACS Anjos - Código Postal 1150-152, Lisboa - Portugal, <strong>a quem confere poderes especiais e necessários para ${generoLetra} representar perante a Conservatória dos Registos Centrais de Lisboa/Arquivo Distrital do Porto ao abrigo da Lei da Nacionalidade nº 37/81, de 3 de Outubro, com sua posterior alteração pela Lei Orgânica nº 2/2020, requerer a Nacionalidade Portuguesa pela via da atribuição (N. 1º, alínea d.) da Lei n. 37/81, como net${generoLetra} de português</strong>, e depois promovendo, se necessário, a inscrição do respetivo nascimento, fixação do nome, praticando e assinando tudo o que seja necessário ao indicado fim, podendo prestar declarações e substabelecer os poderes que lhe foram conferidos. No mais, declaro que nunca fui condenado, com trânsito em julgado da sentença, pela prática de crime punível com pena de prisão de máximo igual ou superior a três anos, segundo a lei portuguesa. `;
-            }
-
-            if (tipoProcesso === "filhosMaiores") {
-                textoProcura = `<strong>${nome}</strong>, ${nacionalidade}, no estado civil de ${estadoCivil}, ${profissao}, nascid${generoLetra} em ${dataNascimento}, na cidade de ${cidadeNascimento} – ${ufNascimento}, filh${generoLetra} de ${nomePai} e ${nomeMae}, residente em ${residencia}, portador${genero === "homem" ? "" : "a"} do documento de identificação (${tipoDocumento}) nº ${documento}, expedido em ${dataExpedicao} pelo órgão ${orgaoExpedidor}, constitui como sua bastante procuradora a <strong>Dra. CARLA OSSUNA</strong>, advogada inscrita na Ordem dos Advogados de Portugal, com cédula profissional sob o Nº 64201L, com morada profissional na Rua Febo Muniz, 27B, Edifício LACS Anjos - Código Postal 1150-152, Lisboa - Portugal, <strong>a quem confere poderes especiais e necessários para ${generoLetra} representar perante a Conservatória dos Registos Centrais e/ou Conservatória dos Registos Centrais de Lisboa/Arquivo Distrital do Porto, ao abrigo do art. 1º, n.º 1, al.c), da Lei da Nacionalidade nº 37/81, de 3 de Outubro, com sua posterior alteração pela Lei Orgânica nº 2/2020, requerer a Nacionalidade Portuguesa pela via da atribuição, por ser filh${generoLetra} de ${portugues} ${portugues === "pai" ? "português" : "portuguesa"}</strong>, e que seja lavrado o respetivo registo, promovendo, se necessário, a inscrição do respetivo nascimento, fixação do nome, praticando e assinando tudo o que seja necessário ao indicado fim, podendo prestar declarações e substabelecer os poderes que lhe foram conferidos.`;
-            }
-
-            if (tipoProcesso === "matrimonio") {
-                textoProcura = `<strong>${nome}</strong>, ${nacionalidade}, no estado civil de ${estadoCivil}, ${profissao}, nascid${generoLetra} em ${dataNascimento}, na cidade de ${cidadeNascimento} – ${ufNascimento}, casad${generoLetra} com ${nomeConjuge}, desde ${dataCasamento}, residente em ${residencia}, portador${genero === "homem" ? "" : "a"} do documento de identificação (${tipoDocumento}) nº ${documento}, expedido em ${dataExpedicao} pelo órgão ${orgaoExpedidor}, constitui como sua bastante procuradora a <strong>Dra. CARLA OSSUNA</strong>, advogada inscrita na Ordem dos Advogados de Portugal, com cédula profissional sob o Nº 64201L, com morada profissional na Rua Febo Muniz, 27B, Edifício LACS Anjos - Código Postal 1150-152, Lisboa - Portugal, <strong>a quem confere poderes especiais e necessários para ${generoLetra} representar perante a Conservatória dos Registos Centrais de Lisboa/Arquivo Distrital do Porto, ao abrigo do art. 3º da Lei da Nacionalidade nº 37/81, de 3 de Outubro, com sua posterior alteração pela Lei Orgânica nº 2/2020, requerer a Nacionalidade Portuguesa pela via da aquisição</strong>, e que seja lavrado o respetivo registo, promovendo, se necessário, a inscrição do respetivo nascimento, fixação do nome, praticando e assinando tudo o que seja necessário ao indicado fim, podendo prestar declarações e substabelecer os poderes que lhe foram conferidos.`;
-            }
-
-            if (tipoProcesso === "transcricao") {
-                textoProcura = `<strong>${nome}</strong>, ${nacionalidade}, no estado civil de ${estadoCivil}, ${profissao}, nascid${generoLetra} em ${dataNascimento}, na cidade de ${cidadeNascimento} – ${ufNascimento}, residente em ${residencia}, portador${genero === "homem" ? "" : "a"} do documento de identificação (${tipoDocumento}) nº ${documento}, expedido em ${dataExpedicao} pelo órgão ${orgaoExpedidor}, constitui como sua bastante procuradora a <strong>Dra. CARLA OSSUNA</strong>, advogada inscrita na Ordem dos Advogados de Portugal, com cédula profissional sob o Nº 64201L, com morada profissional na Rua Febo Muniz, 27B, Edifício LACS Anjos - Código Postal 1150-152, Lisboa - Portugal, <strong>a quem confere poderes especiais e necessários para ${generoLetra} representar perante a Conservatória dos Registos Centrais e/ou Conservatória dos Registos Civis e suas extensões, para proceder à Transcrição de Casamento ocorrido no estrangeiro entre ${nubente1} e ${nubente2}</strong>, de meus ${portugues}, podendo para o feito declarar, praticar e assinar tudo o que seja necessário ao indicado fim, inclusive podendo desistir do pedido, prestar declarações e substabelecer os poderes que lhe foram conferidos.`
-            }
-
-            const conteudo = `
-                <html xmlns:o='urn:schemas-microsoft-com:office:office' 
-                xmlns:w='urn:schemas-microsoft-com:office:word' 
-                xmlns='http://www.w3.org/TR/REC-html40'>
-                <head><meta charset='utf-8'>
-                <style>
-                    body { font-family: "Aptos", sans-serif; font-size: 12pt; }
-                    h1 { font-size: 12pt; text-align: center; }
-                    p { text-align: justify; }
-                </style>
-                <title>Procuração</title></head><body>
-
-                <h1>PROCURAÇÃO - ${tipoProcesso === "filhosMaiores" ? "FILHO MAIOR" : tipoProcesso === "netos" ? "NETOS" : tipoProcesso === "matrimonio" ? "MATRIMÔNIO" : "TRANSCRIÇÃO"}</h1>
-                    <p style="text-align: justify;"> ${textoProcura}</p>
-                <p style="text-align: right;">${cidade} - ${uf}, ________ de ____________ de 2025</p>
-                <p style="margin-top: 100px; text-align:center;">_______________________________________________<br>
-                ${nome}<br>
-                (Assinatura com firma reconhecida por autenticidade)</p>
-
-                </body></html>
-            `;
-
-            const blob = new Blob(['\ufeff', conteudo], { type: 'application/msword' });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'procuracao.doc';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-    </script>
+    <script src="script.js"></script>
 
 </body>
 
