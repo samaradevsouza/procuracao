@@ -30,7 +30,7 @@ function atualizarCampos() {
     if (tipo === 'filhosMenores') {
         inputFilhosMenores.classList.remove('hidden');
         procuracoesNormais.classList.add('hidden');
-        grupoPortugues.classList.add('hidden');
+        grupoPortugues.classList.remove('hidden');
         grupoNubentes.classList.add('hidden');
         grupoPais.classList.add('hidden');
         grupoConjuge.classList.add('hidden');
