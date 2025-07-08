@@ -274,7 +274,8 @@ function gerarDocumento() {
                 <p style="text-align: right;">${cidade} - ${uf}, ________ de ____________ de 2025</p>
                 <p style="margin-top: 100px; text-align:center;">_______________________________________________<br>
                 ${nome}<br>
-                (Assinatura com firma reconhecida por autenticidade)</p>
+                ${tipoProcesso === "transcricao" ? "(Assinatura com firma reconhecida por autenticidade)" : ""}
+                </p>
 
                 </body></html>
             `;

@@ -8,7 +8,7 @@ body {
         }
 
         h1 {
-            color: #2c3e50;
+            color: #126180;
             text-align: center;
             margin-bottom: 10px;
         }
@@ -63,7 +63,7 @@ body {
         }
 
         button {
-            background-color: #3498db;
+            background-color: #126180;
             color: white;
             border: none;
             padding: 12px 20px;
@@ -101,6 +101,16 @@ body {
 
         .info {
             text-align: center;
+        }
+
+        footer{
+text-align: center;
+line-height: 1vh;
+        }
+        footer a {
+            text-decoration: none;
+            color: #126180 ;
+            font-weight: bolder;
         }
 
         @media (max-width: 600px) {
