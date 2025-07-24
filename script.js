@@ -165,6 +165,14 @@ function gerarDocumento() {
     const selectTipoProcuracao = document.getElementById('tipoProcuracao');
     const tipoProcuracao = selectTipoProcuracao ? selectTipoProcuracao.value : '';
 
+    const hoje = new Date();
+
+    const dia = hoje.getDate();
+    const mes = hoje.toLocaleString("pt-BR", { month: "long" });
+    const ano = hoje.getFullYear();
+
+    const dataFormatada = `${dia} de ${mes} de ${ano}`;
+
     let textoProcura = "";
 
     if (tipoProcesso === "netos") {
@@ -212,7 +220,7 @@ function gerarDocumento() {
                 <title>Procuração</title></head><body>
                                 <h1>PROCURAÇÃO - FILHO MENOR</h1>
                     <p style="text-align: justify;"> ${textoProcura}</p>
-                <p style="text-align: right;">${cidadeMae} - ${ufMae}, ________ de ____________ de 2025</p>
+                <p style="text-align: right;">${cidadeMae} - ${ufMae}, ${dataFormatada}</p>
                 <p style="margin-top: 100px; text-align:center;">_______________________________________________<br>
                 ${nomeMaeMenor}<br>
                 (Assinatura com firma reconhecida por autenticidade)<br><br><br>
@@ -233,7 +241,7 @@ function gerarDocumento() {
                 <title>Procuração</title></head><body>
                                 <h1>PROCURAÇÃO - FILHO MENOR</h1>
                     <p style="text-align: justify;"> ${textoProcura}</p>
-                <p style="text-align: right;">${cidadeMae} - ${ufMae}, ________ de ____________ de 2025</p>
+                <p style="text-align: right;">${cidadeMae} - ${ufMae},${dataFormatada}</p>
                 <p style="margin-top: 100px; text-align:center;">_______________________________________________<br>
                 ${nomeMaeMenor}<br>
                 (Assinatura com firma reconhecida por autenticidade)</p>
@@ -251,7 +259,7 @@ function gerarDocumento() {
                 <title>Procuração</title></head><body>
                                 <h1>PROCURAÇÃO - FILHO MENOR</h1>
                     <p style="text-align: justify;"> ${textoProcura}</p>
-                <p style="text-align: right;">${cidadeMae} - ${ufMae}, ________ de ____________ de 2025</p>
+                <p style="text-align: right;">${cidadeMae} - ${ufMae}, ${dataFormatada}</p>
                 <p style="margin-top: 100px; text-align:center;">_______________________________________________<br>
                 ${nomePaiMenor}<br>
                 (Assinatura com firma reconhecida por autenticidade)</p>
@@ -271,7 +279,7 @@ function gerarDocumento() {
 
                 <h1>PROCURAÇÃO - ${tipoProcesso === "filhosMaiores" ? "FILHO MAIOR" : tipoProcesso === "netos" ? "NETOS" : tipoProcesso === "matrimonio" ? "MATRIMÔNIO" : tipoProcesso === "filhosMenores" ? "FILHO MENOR" : "TRANSCRIÇÃO"}</h1>
                     <p style="text-align: justify;"> ${textoProcura}</p>
-                <p style="text-align: right;">${cidade} - ${uf}, ________ de ____________ de 2025</p>
+                <p style="text-align: right;">${cidade} - ${uf}, ${dataFormatada}</p>
                 <p style="margin-top: 100px; text-align:center;">_______________________________________________<br>
                 ${nome}<br>
                 ${tipoProcesso === "transcricao" ? "(Assinatura com firma reconhecida por autenticidade)" : ""}
