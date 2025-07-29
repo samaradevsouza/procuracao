@@ -264,6 +264,29 @@ function gerarDocumento() {
                 ${nomePaiMenor}<br>
                 (Assinatura com firma reconhecida por autenticidade)</p>
                 </body></html> `;
+    } else if (tipoProcesso === 'transcricao') {
+        conteudo = `
+                <html xmlns:o='urn:schemas-microsoft-com:office:office' 
+                xmlns:w='urn:schemas-microsoft-com:office:word' 
+                xmlns='http://www.w3.org/TR/REC-html40'>
+                <head><meta charset='utf-8'>
+                <style>
+                    body { font-family: "Aptos", sans-serif; font-size: 12pt; }
+                    h1 { font-size: 12pt; text-align: center; }
+                    p { text-align: justify; }
+                </style>
+                <title>Procuração</title></head><body>
+
+                <h1>PROCURAÇÃO - TRANSCRIÇÃO</h1>
+                    <p style="text-align: justify;"> ${textoProcura}</p>
+                <p style="text-align: right;">${cidade} - ${uf}, __________ de _________________ de 2025</p>
+                <p style="margin-top: 100px; text-align:center;">_______________________________________________<br>
+                ${nome}<br>
+                (Assinatura com firma reconhecida por autenticidade) 
+                </p>
+
+                </body></html>
+            `;
     } else {
         conteudo = `
                 <html xmlns:o='urn:schemas-microsoft-com:office:office' 
@@ -277,12 +300,11 @@ function gerarDocumento() {
                 </style>
                 <title>Procuração</title></head><body>
 
-                <h1>PROCURAÇÃO - ${tipoProcesso === "filhosMaiores" ? "FILHO MAIOR" : tipoProcesso === "netos" ? "NETOS" : tipoProcesso === "matrimonio" ? "MATRIMÔNIO" : tipoProcesso === "filhosMenores" ? "FILHO MENOR" : "TRANSCRIÇÃO"}</h1>
+                <h1>PROCURAÇÃO - ${tipoProcesso === "filhosMaiores" ? "FILHO MAIOR" : tipoProcesso === "netos" ? "NETOS" : tipoProcesso === "matrimonio" ? "MATRIMÔNIO" :  "FILHO MENOR"}</h1>
                     <p style="text-align: justify;"> ${textoProcura}</p>
                 <p style="text-align: right;">${cidade} - ${uf}, ${dataFormatada}</p>
                 <p style="margin-top: 100px; text-align:center;">_______________________________________________<br>
                 ${nome}<br>
-                ${tipoProcesso === "transcricao" ? "(Assinatura com firma reconhecida por autenticidade)" : ""}
                 </p>
 
                 </body></html>
