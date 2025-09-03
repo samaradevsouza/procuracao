@@ -61,6 +61,23 @@ function atualizarCampos() {
         grupoConjuge.classList.add('hidden');
         grupoDataCasamento.classList.add('hidden');
 
+        if (tipoProcuracao === 'm') {
+            inputMae.classList.remove('hidden');
+            inputPai.classList.add('hidden');
+        } else if (tipoProcuracao === 'p') {
+            inputPai.classList.remove('hidden');
+            inputMae.classList.add('hidden');
+        } else if (tipoProcuracao === 'pm') {
+            inputMae.classList.remove('hidden');
+            inputPai.classList.remove('hidden');
+        } else {
+            inputMae.classList.add('hidden');
+            inputPai.classList.add('hidden');
+        }
+        if (selectTipoProcuracao) {
+            selectTipoProcuracao.addEventListener('change', atualizarCampos);
+        }
+
     } else {
         procuracoesNormais.classList.remove('hidden');
         inputFilhosMenores.classList.add('hidden');
