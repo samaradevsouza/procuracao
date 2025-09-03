@@ -49,10 +49,18 @@ function atualizarCampos() {
             inputMae.classList.add('hidden');
             inputPai.classList.add('hidden');
         }
-
         if (selectTipoProcuracao) {
             selectTipoProcuracao.addEventListener('change', atualizarCampos);
         }
+    } else if (tipo === 'netosMenor') {
+        inputFilhosMenores.classList.remove('hidden');
+        procuracoesNormais.classList.add('hidden');
+        grupoPortugues.classList.remove('hidden');
+        grupoNubentes.classList.add('hidden');
+        grupoPais.classList.add('hidden');
+        grupoConjuge.classList.add('hidden');
+        grupoDataCasamento.classList.add('hidden');
+
     } else {
         procuracoesNormais.classList.remove('hidden');
         inputFilhosMenores.classList.add('hidden');
@@ -65,7 +73,7 @@ function atualizarCampos() {
             grupoPais.classList.remove('hidden');
             grupoConjuge.classList.add('hidden');
             grupoDataCasamento.classList.add('hidden');
-        } else if (tipo === 'netos') {
+        } else if (tipo === 'netosMaior') {
             grupoPortugues.classList.add('hidden');
             grupoNubentes.classList.add('hidden');
             grupoPais.classList.remove('hidden');
@@ -175,7 +183,7 @@ function gerarDocumento() {
 
     let textoProcura = "";
 
-    if (tipoProcesso === "netos") {
+    if (tipoProcesso === "netosMaior") {
         textoProcura = `<strong>${nome}</strong>, ${nacionalidade}, no estado civil de ${estadoCivil}, ${profissao}, nascid${generoLetra} em ${dataNascimento}, na cidade de ${cidadeNascimento} – ${ufNascimento}, filh${generoLetra} de ${nomePai} e ${nomeMae}, residente em ${residencia}, portador${genero === "homem" ? "" : "a"} do documento de identificação (${tipoDocumento}) nº ${documento}, expedido em ${dataExpedicao} pelo órgão ${orgaoExpedidor}, constitui como sua bastante procuradora a <strong>Dra. CARLA OSSUNA</strong>, advogada inscrita na Ordem dos Advogados de Portugal, com cédula profissional sob o Nº 64201L, com morada profissional na Rua Febo Muniz, 27B, Edifício LACS Anjos - Código Postal 1150-152, Lisboa - Portugal, <strong>a quem confere poderes especiais e necessários para ${generoLetra} representar perante a Conservatória dos Registos Centrais de Lisboa/Arquivo Distrital do Porto ao abrigo da Lei da Nacionalidade nº 37/81, de 3 de Outubro, com sua posterior alteração pela Lei Orgânica nº 2/2020, requerer a Nacionalidade Portuguesa pela via da atribuição (N. 1º, alínea d.) da Lei n. 37/81, como net${generoLetra} de português</strong>, e depois promovendo, se necessário, a inscrição do respetivo nascimento, fixação do nome, praticando e assinando tudo o que seja necessário ao indicado fim, podendo prestar declarações e substabelecer os poderes que lhe foram conferidos. No mais, declaro que nunca fui condenado, com trânsito em julgado da sentença, pela prática de crime punível com pena de prisão de máximo igual ou superior a três anos, segundo a lei portuguesa. `;
     }
 
@@ -197,11 +205,23 @@ function gerarDocumento() {
 <strong>${nomePaiMenor}</strong>, ${nacionalidadePai}, no estado civil de ${estadoCivilPai}, ${profissaoPai}, com residência habitual em ${residenciaPai}, portadora do documento de identificação (${tipoDocumentoPai}) n.º ${documentoPai}, com data de expedição em ${dataExpedicaoPai} pelo órgão emissor ${orgaoExpedidorPai}, constitui como sua bastante procuradora a <strong>Dra. CARLA OSSUNA</strong>, advogada inscrita na Ordem dos Advogados de Portugal, com cédula profissional sob o Nº 64201L, com morada profissional na Rua Febo Muniz, 27B, Edifício LACS Anjos - Código Postal 1150-152, Lisboa - Portugal, a quem confere os poderes especiais e necessários para os  representar perante a Conservatória dos Registos Centrais de Lisboa/Arquivo Distrital do Porto, ao abrigo do art. 1º, nº 1, al.c) da Lei da Nacionalidade nº 37/81, de 3 de Outubro, com sua posterior alteração pela Lei Orgânica n.º 2/2020, requerer a atribuição da Nacionalidade Portuguesa d${generoLetra} noss${generoLetra} filh${generoLetra} <strong>${nomeMenor}</strong>, nascid${generoLetra} em ${dataNascimentoMenor}, na cidade de ${cidadeNascimentoMenor}, no estado de ${estadoNascimento}, portador${genero === "homem" ? "" : "a"} do documento de identificação (${tipoDocumentoMenor}) n.° ${documentoMenor}, com data de expedição em ${dataDocumentoMenor} pelo órgão ${orgaoExpedidorMenor},  e que seja lavrado o respetivo registo, por ser filh${generoLetra} de <strong> ${portugues} ${portugues === "pai" ? "português" : "portuguesa"}</strong>, promovendo, se necessário, a inscrição do respetivo nascimento, fixação do nome, praticando e assinando tudo o que seja necessário ao indicado fim, podendo, prestar declarações e substabelecer os poderes que lhe foram conferidos. `;
     }
 
-    if (tipoProcesso === "filhosMenores" && tipoProcuracao === "m") {
+    if (tipoProcesso === "" && tipoProcuracao === "m") {
         textoProcura = `<strong>${nomeMaeMenor}</strong>, ${nacionalidadeMae}, no estado civil de ${estadoCivilMae}, ${profissaoMae}, com residência habitual em ${residenciaMae}, portadora do documento de identificação (${tipoDocumentoMae}) n.º ${documentoMae}, com data de expedição em ${dataExpedicaoMae} pelo órgão emissor ${orgaoExpedidorMae}, constitui como sua bastante procuradora a <strong>Dra. CARLA OSSUNA</strong>, advogada inscrita na Ordem dos Advogados de Portugal, com cédula profissional sob o Nº 64201L, com morada profissional na Rua Febo Muniz, 27B, Edifício LACS Anjos - Código Postal 1150-152, Lisboa - Portugal, a quem confere os poderes especiais e necessários para os  representar perante a Conservatória dos Registos Centrais de Lisboa/Arquivo Distrital do Porto, ao abrigo do art. 1º, nº 1, al.c) da Lei da Nacionalidade nº 37/81, de 3 de Outubro, com sua posterior alteração pela Lei Orgânica n.º 2/2020, requerer a atribuição da Nacionalidade Portuguesa d${generoLetra} noss${generoLetra} filh${generoLetra} <strong>${nomeMenor}</strong>, nascid${generoLetra} em ${dataNascimentoMenor}, na cidade de ${cidadeNascimentoMenor}, no estado de ${estadoNascimento}, portador${genero === "homem" ? "" : "a"} do documento de identificação (${tipoDocumentoMenor}) n.° ${documentoMenor}, com data de expedição em ${dataDocumentoMenor} pelo órgão ${orgaoExpedidorMenor}, e que seja lavrado o respetivo registo, por ser filh${generoLetra} de<strong> ${portugues} ${portugues === "pai" ? "português" : "portuguesa"}</strong>, promovendo, se necessário, a inscrição do respetivo nascimento, fixação do nome, praticando e assinando tudo o que seja necessário ao indicado fim, podendo, prestar declarações e substabelecer os poderes que lhe foram conferidos. `
     }
 
     if (tipoProcesso === "filhosMenores" && tipoProcuracao === "p") {
+        textoProcura = `<strong>${nomePaiMenor}</strong>, ${nacionalidadePai}, no estado civil de ${estadoCivilPai}, ${profissaoPai}, com residência habitual em ${residenciaPai}, portadora do documento de identificação (${tipoDocumentoPai}) n.º ${documentoPai}, com data de expedição em ${dataExpedicaoPai} pelo órgão emissor ${orgaoExpedidorPai}, constitui como sua bastante procuradora a <strong>Dra. CARLA OSSUNA</strong>, advogada inscrita na Ordem dos Advogados de Portugal, com cédula profissional sob o Nº 64201L, com morada profissional na Rua Febo Muniz, 27B, Edifício LACS Anjos - Código Postal 1150-152, Lisboa - Portugal, a quem confere os poderes especiais e necessários para os  representar perante a Conservatória dos Registos Centrais de Lisboa/Arquivo Distrital do Porto, ao abrigo do art. 1º, nº 1, al.c) da Lei da Nacionalidade nº 37/81, de 3 de Outubro, com sua posterior alteração pela Lei Orgânica n.º 2/2020, requerer a atribuição da Nacionalidade Portuguesa d${generoLetra} noss${generoLetra} filh${generoLetra} <strong>${nomeMenor}</strong>, nascid${generoLetra} em ${dataNascimentoMenor}, na cidade de ${cidadeNascimentoMenor}, no estado de ${estadoNascimento}, portador${genero === "homem" ? "" : "a"} do documento de identificação (${tipoDocumentoMenor}) n.° ${documentoMenor}, com data de expedição em ${dataDocumentoMenor} pelo órgão ${orgaoExpedidorMenor},  e que seja lavrado o respetivo registo, por ser filh${generoLetra} de<strong> ${portugues} ${portugues === "pai" ? "português" : "portuguesa"}</strong>, promovendo, se necessário, a inscrição do respetivo nascimento, fixação do nome, praticando e assinando tudo o que seja necessário ao indicado fim, podendo, prestar declarações e substabelecer os poderes que lhe foram conferidos. `
+    }
+    if (tipoProcesso === "netosMenor" && tipoProcuracao === "pm") {
+        textoProcura = `<strong>${nomeMaeMenor}</strong>, ${nacionalidadeMae}, no estado civil de ${estadoCivilMae}, ${profissaoMae}, com residência habitual em ${residenciaMae}, portadora do documento de identificação (${tipoDocumentoMae}) n.º ${documentoMae}, com data de expedição em ${dataExpedicaoMae} pelo órgão emissor ${orgaoExpedidorMae}, e <br>
+<strong>${nomePaiMenor}</strong>, ${nacionalidadePai}, no estado civil de ${estadoCivilPai}, ${profissaoPai}, com residência habitual em ${residenciaPai}, portadora do documento de identificação (${tipoDocumentoPai}) n.º ${documentoPai}, com data de expedição em ${dataExpedicaoPai} pelo órgão emissor ${orgaoExpedidorPai}, constitui como sua bastante procuradora a <strong>Dra. CARLA OSSUNA</strong>, advogada inscrita na Ordem dos Advogados de Portugal, com cédula profissional sob o Nº 64201L, com morada profissional na Rua Febo Muniz, 27B, Edifício LACS Anjos - Código Postal 1150-152, Lisboa - Portugal, a quem confere os poderes especiais e necessários para os  representar perante a Conservatória dos Registos Centrais de Lisboa/Arquivo Distrital do Porto, ao abrigo do art. 1º, nº 1, al.c) da Lei da Nacionalidade nº 37/81, de 3 de Outubro, com sua posterior alteração pela Lei Orgânica n.º 2/2020, requerer a atribuição da Nacionalidade Portuguesa d${generoLetra} noss${generoLetra} filh${generoLetra} <strong>${nomeMenor}</strong>, nascid${generoLetra} em ${dataNascimentoMenor}, na cidade de ${cidadeNascimentoMenor}, no estado de ${estadoNascimento}, portador${genero === "homem" ? "" : "a"} do documento de identificação (${tipoDocumentoMenor}) n.° ${documentoMenor}, com data de expedição em ${dataDocumentoMenor} pelo órgão ${orgaoExpedidorMenor},  e que seja lavrado o respetivo registo, por ser filh${generoLetra} de <strong> ${portugues} ${portugues === "pai" ? "português" : "portuguesa"}</strong>, promovendo, se necessário, a inscrição do respetivo nascimento, fixação do nome, praticando e assinando tudo o que seja necessário ao indicado fim, podendo, prestar declarações e substabelecer os poderes que lhe foram conferidos. `;
+    }
+
+    if (tipoProcesso === "netosMenor" && tipoProcuracao === "m") {
+        textoProcura = `<strong>${nomeMaeMenor}</strong>, ${nacionalidadeMae}, no estado civil de ${estadoCivilMae}, ${profissaoMae}, com residência habitual em ${residenciaMae}, portadora do documento de identificação (${tipoDocumentoMae}) n.º ${documentoMae}, com data de expedição em ${dataExpedicaoMae} pelo órgão emissor ${orgaoExpedidorMae}, constitui como sua bastante procuradora a <strong>Dra. CARLA OSSUNA</strong>, advogada inscrita na Ordem dos Advogados de Portugal, com cédula profissional sob o Nº 64201L, com morada profissional na Rua Febo Muniz, 27B, Edifício LACS Anjos - Código Postal 1150-152, Lisboa - Portugal, a quem confere os poderes especiais e necessários para os  representar perante a Conservatória dos Registos Centrais de Lisboa/Arquivo Distrital do Porto, ao abrigo do art. 1º, nº 1, al.c) da Lei da Nacionalidade nº 37/81, de 3 de Outubro, com sua posterior alteração pela Lei Orgânica n.º 2/2020, requerer a atribuição da Nacionalidade Portuguesa d${generoLetra} noss${generoLetra} filh${generoLetra} <strong>${nomeMenor}</strong>, nascid${generoLetra} em ${dataNascimentoMenor}, na cidade de ${cidadeNascimentoMenor}, no estado de ${estadoNascimento}, portador${genero === "homem" ? "" : "a"} do documento de identificação (${tipoDocumentoMenor}) n.° ${documentoMenor}, com data de expedição em ${dataDocumentoMenor} pelo órgão ${orgaoExpedidorMenor}, e que seja lavrado o respetivo registo, por ser filh${generoLetra} de<strong> ${portugues} ${portugues === "pai" ? "português" : "portuguesa"}</strong>, promovendo, se necessário, a inscrição do respetivo nascimento, fixação do nome, praticando e assinando tudo o que seja necessário ao indicado fim, podendo, prestar declarações e substabelecer os poderes que lhe foram conferidos. `
+    }
+
+    if (tipoProcesso === "netosMenor" && tipoProcuracao === "p") {
         textoProcura = `<strong>${nomePaiMenor}</strong>, ${nacionalidadePai}, no estado civil de ${estadoCivilPai}, ${profissaoPai}, com residência habitual em ${residenciaPai}, portadora do documento de identificação (${tipoDocumentoPai}) n.º ${documentoPai}, com data de expedição em ${dataExpedicaoPai} pelo órgão emissor ${orgaoExpedidorPai}, constitui como sua bastante procuradora a <strong>Dra. CARLA OSSUNA</strong>, advogada inscrita na Ordem dos Advogados de Portugal, com cédula profissional sob o Nº 64201L, com morada profissional na Rua Febo Muniz, 27B, Edifício LACS Anjos - Código Postal 1150-152, Lisboa - Portugal, a quem confere os poderes especiais e necessários para os  representar perante a Conservatória dos Registos Centrais de Lisboa/Arquivo Distrital do Porto, ao abrigo do art. 1º, nº 1, al.c) da Lei da Nacionalidade nº 37/81, de 3 de Outubro, com sua posterior alteração pela Lei Orgânica n.º 2/2020, requerer a atribuição da Nacionalidade Portuguesa d${generoLetra} noss${generoLetra} filh${generoLetra} <strong>${nomeMenor}</strong>, nascid${generoLetra} em ${dataNascimentoMenor}, na cidade de ${cidadeNascimentoMenor}, no estado de ${estadoNascimento}, portador${genero === "homem" ? "" : "a"} do documento de identificação (${tipoDocumentoMenor}) n.° ${documentoMenor}, com data de expedição em ${dataDocumentoMenor} pelo órgão ${orgaoExpedidorMenor},  e que seja lavrado o respetivo registo, por ser filh${generoLetra} de<strong> ${portugues} ${portugues === "pai" ? "português" : "portuguesa"}</strong>, promovendo, se necessário, a inscrição do respetivo nascimento, fixação do nome, praticando e assinando tudo o que seja necessário ao indicado fim, podendo, prestar declarações e substabelecer os poderes que lhe foram conferidos. `
     }
 
@@ -264,7 +284,65 @@ function gerarDocumento() {
                 ${nomePaiMenor}<br>
                 (Assinatura com firma reconhecida por autenticidade)</p>
                 </body></html> `;
-    } else if (tipoProcesso === 'transcricao') {
+    } else if (tipoProcesso === 'netosMenor' && tipoProcuracao === 'pm') {
+        conteudo = `<html xmlns:o='urn:schemas-microsoft-com:office:office' 
+                xmlns:w='urn:schemas-microsoft-com:office:word' 
+                xmlns='http://www.w3.org/TR/REC-html40'>
+                <head><meta charset='utf-8'>
+                <style>
+                    body { font-family: "Aptos", sans-serif; font-size: 12pt; }
+                    h1 { font-size: 12pt; text-align: center; }
+                    p { text-align: justify; }
+                </style>
+                <title>Procuração</title></head><body>
+                                <h1>PROCURAÇÃO - NETOS</h1>
+                    <p style="text-align: justify;"> ${textoProcura}</p>
+                <p style="text-align: right;">${cidadeMae} - ${ufMae}, ${dataFormatada}</p>
+                <p style="margin-top: 100px; text-align:center;">_______________________________________________<br>
+                ${nomeMaeMenor}<br>
+                (Assinatura com firma reconhecida por autenticidade)<br><br><br>
+                _______________________________________________<br>
+                ${nomePaiMenor}<br>
+                (Assinatura com firma reconhecida por autenticidade)</p>
+                </body></html> `;
+    } else if (tipoProcesso === 'netosMenor' && tipoProcuracao === 'm') {
+        conteudo = `<html xmlns:o='urn:schemas-microsoft-com:office:office' 
+                xmlns:w='urn:schemas-microsoft-com:office:word' 
+                xmlns='http://www.w3.org/TR/REC-html40'>
+                <head><meta charset='utf-8'>
+                <style>
+                    body { font-family: "Aptos", sans-serif; font-size: 12pt; }
+                    h1 { font-size: 12pt; text-align: center; }
+                    p { text-align: justify; }
+                </style>
+                <title>Procuração</title></head><body>
+                                <h1>PROCURAÇÃO - NETOS</h1>
+                    <p style="text-align: justify;"> ${textoProcura}</p>
+                <p style="text-align: right;">${cidadeMae} - ${ufMae},${dataFormatada}</p>
+                <p style="margin-top: 100px; text-align:center;">_______________________________________________<br>
+                ${nomeMaeMenor}<br>
+                (Assinatura com firma reconhecida por autenticidade)</p>
+                </body></html> `;
+    } else if (tipoProcesso === 'netosMenor' && tipoProcuracao === 'p') {
+        conteudo = `<html xmlns:o='urn:schemas-microsoft-com:office:office' 
+                xmlns:w='urn:schemas-microsoft-com:office:word' 
+                xmlns='http://www.w3.org/TR/REC-html40'>
+                <head><meta charset='utf-8'>
+                <style>
+                    body { font-family: "Aptos", sans-serif; font-size: 12pt; }
+                    h1 { font-size: 12pt; text-align: center; }
+                    p { text-align: justify; }
+                </style>
+                <title>Procuração</title></head><body>
+                                <h1>PROCURAÇÃO - NETOS</h1>
+                    <p style="text-align: justify;"> ${textoProcura}</p>
+                <p style="text-align: right;">${cidadePai} - ${ufPai}, ${dataFormatada}</p>
+                <p style="margin-top: 100px; text-align:center;">_______________________________________________<br>
+                ${nomePaiMenor}<br>
+                (Assinatura com firma reconhecida por autenticidade)</p>
+                </body></html> `;
+    }
+    else if (tipoProcesso === 'transcricao') {
         conteudo = `
                 <html xmlns:o='urn:schemas-microsoft-com:office:office' 
                 xmlns:w='urn:schemas-microsoft-com:office:word' 
@@ -300,7 +378,7 @@ function gerarDocumento() {
                 </style>
                 <title>Procuração</title></head><body>
 
-                <h1>PROCURAÇÃO - ${tipoProcesso === "filhosMaiores" ? "FILHO MAIOR" : tipoProcesso === "netos" ? "NETOS" : tipoProcesso === "matrimonio" ? "MATRIMÔNIO" :  "FILHO MENOR"}</h1>
+                <h1>PROCURAÇÃO - ${tipoProcesso === "filhosMaiores" ? "FILHO MAIOR" : tipoProcesso === "netosMaior" ? "NETOS" : tipoProcesso === "matrimonio" ? "MATRIMÔNIO" : "FILHO MENOR"}</h1>
                     <p style="text-align: justify;"> ${textoProcura}</p>
                 <p style="text-align: right;">${cidade} - ${uf}, ${dataFormatada}</p>
                 <p style="margin-top: 100px; text-align:center;">_______________________________________________<br>
