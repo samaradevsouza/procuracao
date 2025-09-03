@@ -384,7 +384,6 @@ function gerarDocumento() {
                 <p style="margin-top: 100px; text-align:center;">_______________________________________________<br>
                 ${nome}<br>
                 </p>
-
                 </body></html>
             `;
     }
