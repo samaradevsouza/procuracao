@@ -260,10 +260,10 @@ function gerarDocumento() {
                 <p style="text-align: right;">${cidadeMae} - ${ufMae}, ${dataFormatada}</p>
                 <p style="margin-top: 100px; text-align:center;">_______________________________________________<br>
                 ${nomeMaeMenor}<br>
-                (Assinatura com firma reconhecida por autenticidade)<br><br><br>
+                <br><br><br>
                 _______________________________________________<br>
                 ${nomePaiMenor}<br>
-                (Assinatura com firma reconhecida por autenticidade)</p>
+                </p>
                 </body></html> `;
     } else if (tipoProcesso === 'filhosMenores' && tipoProcuracao === 'm') {
         conteudo = `<html xmlns:o='urn:schemas-microsoft-com:office:office' 
@@ -281,7 +281,7 @@ function gerarDocumento() {
                 <p style="text-align: right;">${cidadeMae} - ${ufMae},${dataFormatada}</p>
                 <p style="margin-top: 100px; text-align:center;">_______________________________________________<br>
                 ${nomeMaeMenor}<br>
-                (Assinatura com firma reconhecida por autenticidade)</p>
+                </p>
                 </body></html> `;
     } else if (tipoProcesso === 'filhosMenores' && tipoProcuracao === 'p') {
         conteudo = `<html xmlns:o='urn:schemas-microsoft-com:office:office' 
@@ -299,7 +299,7 @@ function gerarDocumento() {
                 <p style="text-align: right;">${cidadeMae} - ${ufMae}, ${dataFormatada}</p>
                 <p style="margin-top: 100px; text-align:center;">_______________________________________________<br>
                 ${nomePaiMenor}<br>
-                (Assinatura com firma reconhecida por autenticidade)</p>
+                </p>
                 </body></html> `;
     } else if (tipoProcesso === 'netosMenor' && tipoProcuracao === 'pm') {
         conteudo = `<html xmlns:o='urn:schemas-microsoft-com:office:office' 
@@ -317,10 +317,10 @@ function gerarDocumento() {
                 <p style="text-align: right;">${cidadeMae} - ${ufMae}, ${dataFormatada}</p>
                 <p style="margin-top: 100px; text-align:center;">_______________________________________________<br>
                 ${nomeMaeMenor}<br>
-                (Assinatura com firma reconhecida por autenticidade)<br><br><br>
+                <br><br><br>
                 _______________________________________________<br>
                 ${nomePaiMenor}<br>
-                (Assinatura com firma reconhecida por autenticidade)</p>
+                </p>
                 </body></html> `;
     } else if (tipoProcesso === 'netosMenor' && tipoProcuracao === 'm') {
         conteudo = `<html xmlns:o='urn:schemas-microsoft-com:office:office' 
@@ -338,7 +338,7 @@ function gerarDocumento() {
                 <p style="text-align: right;">${cidadeMae} - ${ufMae},${dataFormatada}</p>
                 <p style="margin-top: 100px; text-align:center;">_______________________________________________<br>
                 ${nomeMaeMenor}<br>
-                (Assinatura com firma reconhecida por autenticidade)</p>
+            </p>
                 </body></html> `;
     } else if (tipoProcesso === 'netosMenor' && tipoProcuracao === 'p') {
         conteudo = `<html xmlns:o='urn:schemas-microsoft-com:office:office' 
@@ -356,7 +356,7 @@ function gerarDocumento() {
                 <p style="text-align: right;">${cidadePai} - ${ufPai}, ${dataFormatada}</p>
                 <p style="margin-top: 100px; text-align:center;">_______________________________________________<br>
                 ${nomePaiMenor}<br>
-                (Assinatura com firma reconhecida por autenticidade)</p>
+                </p>
                 </body></html> `;
     }
     else if (tipoProcesso === 'transcricao') {
