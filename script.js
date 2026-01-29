@@ -294,7 +294,7 @@ function gerarDocumento() {
                 <title>Procuração</title></head><body>
                                 <h1>PROCURAÇÃO - FILHO MENOR</h1>
                     <p style="text-align: justify;"> ${textoProcura}</p>
-                <p style="text-align: right;">${cidadeMae} - ${ufMae}, ${dataFormatada}</p>
+                <p style="text-align: right;">${cidadePai} - ${ufPai}, ${dataFormatada}</p>
                 <p style="margin-top: 100px; text-align:center;">_______________________________________________<br>
                 ${nomePaiMenor}<br>
                 </p>
