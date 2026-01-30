@@ -372,7 +372,7 @@ function gerarDocumento() {
 
                 <h1>PROCURAÇÃO - TRANSCRIÇÃO</h1>
                     <p style="text-align: justify;"> ${textoProcura}</p>
-                <p style="text-align: right;">${cidade} - ${uf}, __________ de _________________ de 2025</p>
+                <p style="text-align: right;">${cidade} - ${uf}, __________ de _________________ de ${ano}</p>
                 <p style="margin-top: 100px; text-align:center;">_______________________________________________<br>
                 ${nome}<br>
                 (Assinatura com firma reconhecida por autenticidade) 
