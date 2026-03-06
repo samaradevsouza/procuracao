@@ -39,23 +39,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputPai = el('pai');
     const selecaoAdv = el('selecaoAdv');
     const selectTipoProcuracao = el('tipoProcuracao');
+    const homologacaoDivorcio = el('inputHomologacaoDivorcio');
+    const inputGenero = el("inputGenero")
 
-    if (selectTipoProcuracao) {
-        selectTipoProcuracao.addEventListener('change', atualizarCampos);
-    }
-    if (tipoProcessoEl) {
-        tipoProcessoEl.addEventListener('change', atualizarCampos);
-    }
 
-    atualizarCampos();
 
-    function atualizarCampos() {
+    window.atualizarCampos = function () {
         const tipo = safeVal(tipoProcessoEl);
         const tipoProcuracao = safeVal(selectTipoProcuracao);
         hide(inputFilhosMenores);
         show(procuracoesNormais);
         hide(inputMae);
         hide(inputPai);
+        hide(homologacaoDivorcio);
+        hide(inputGenero);
 
         if (tipo === 'filhosMenores' || tipo === 'netosMenor') {
             show(inputFilhosMenores);
@@ -66,6 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
             hide(grupoConjuge);
             hide(grupoDataCasamento);
             show(selecaoAdv);
+            hide(homologacaoDivorcio);
+            show(inputGenero);
 
             if (tipoProcuracao === 'm') {
                 show(inputMae); hide(inputPai);
@@ -76,11 +75,23 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 hide(inputMae); hide(inputPai);
             }
-        } else {
+        } else if (tipo == 'homologacaoDivorcio') {
+            hide(grupoPortugues);
+            hide(grupoNubentes);
+            hide(grupoConjuge);
+            hide(grupoDataCasamento);
+            hide(grupoPais);
+            hide(selecaoAdv);
+            show(homologacaoDivorcio);
+            hide(procuracoesNormais);
+            hide(inputGenero);
+        }
+        else {
+            show(inputGenero);
             show(procuracoesNormais);
-
             hide(inputMae);
             hide(inputPai);
+            hide(homologacaoDivorcio);
 
             if (tipo === 'filhosMaiores') {
                 show(grupoPortugues);
@@ -89,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 hide(grupoConjuge);
                 hide(grupoDataCasamento);
                 show(selecaoAdv);
+                hide(homologacaoDivorcio);
             } else if (tipo === 'netosMaior') {
                 hide(grupoPortugues);
                 hide(grupoNubentes);
@@ -96,6 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 hide(grupoConjuge);
                 hide(grupoDataCasamento);
                 show(selecaoAdv);
+                hide(homologacaoDivorcio);
             } else if (tipo === 'matrimonio') {
                 show(grupoConjuge);
                 show(grupoDataCasamento);
@@ -103,6 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 hide(grupoNubentes);
                 show(grupoPais);
                 show(selecaoAdv);
+                hide(homologacaoDivorcio);
             } else if (tipo === 'transcricao') {
                 show(grupoPortugues);
                 show(grupoNubentes);
@@ -110,15 +124,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 hide(grupoDataCasamento);
                 hide(grupoPais);
                 hide(selecaoAdv);
-            } else {
+                hide(homologacaoDivorcio);
+            }
+            else {
                 hide(grupoPortugues);
                 hide(grupoNubentes);
                 hide(grupoConjuge);
                 hide(grupoDataCasamento);
                 show(grupoPais);
                 show(selecaoAdv);
+                hide(homologacaoDivorcio);
+                hide(procuracoesNormais);
             }
         }
+    }
+
+    if (selectTipoProcuracao) {
+        selectTipoProcuracao.addEventListener('change', window.atualizarCampos);
+    }
+    if (tipoProcessoEl) {
+        tipoProcessoEl.addEventListener('change', atualizarCampos);
     }
 
     window.gerarDocumento = function gerarDocumento() {
@@ -198,6 +223,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const orgaoExpedidorPai = safeVal(el("orgaoExpedidorPai"));
             const residenciaPai = `${enderecoPai}, ${cidadePai} - ${ufPai}, CEP ${cepPai}, ${paisPai}`.replaceAll(" ,", ",");
 
+            // Homologação de divórcio
+            const nomePt = safeVal(el("nomePt"));
+            const profissaoPt = safeVal(el("profissaoPt"));
+            const cartaoCidadao = safeVal(el("cartaoCidadao"));
+            const dataValidadeCC = safeVal(el("dataValidadeCC"));
+            const endPt = safeVal(el("endPt"));
+
+            const nomeExConjuge = safeVal(el("nomeExConjuge"));
+            const nacionalidadeExConjuge = safeVal(el("nacionalidadeExConjuge"));
+            const profissaoExConjuge = safeVal(el("profissaoExConjuge"))
+            const docIdExConjuge = safeVal(el("docIdExConjuge"));
+            const dataExpedicaoExConjuge = safeVal(el("dataExpedicaoExConjuge"));
+            const orgaoExpedidorExConjuge = safeVal(el("orgaoExpedidorExConjuge"));
+            const endExConjuge = safeVal(el("endExConjuge"));
+            const cepExConjuge = safeVal(el("cepExConjuge"));
+            const estadoExConjuge = safeVal(el("estadoExConjuge"));
+
             const nome = capitalizeWords(nomeCru);
             const nubente1 = capitalizeWords(nubente1Lower);
             const nubente2 = capitalizeWords(nubente2Lower);
@@ -213,16 +255,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const adv = advRadio ? advRadio.value : null;
 
 
-            if (!genero) throw new Error("genero_nao_selecionado");
-            if ((tipoProcesso !== 'transcricao') && !adv) throw new Error("adv_nao_selecionado");
+            if ((tipoProcesso !== 'homologacaoDivorcio') && !genero) {
+                alert("Verifique se o campo de 'genero' está marcado.")
+            }
+            if (!['transcricao', 'homologacaoDivorcio'].includes(tipoProcesso) && !adv) {
+                alert("Selecione um advogado.");
+            }
 
             const generoLetra = genero === "homem" ? "o" : "a";
 
 
             const dadosDraCarlaOssuna =
-                'como sua bastante procuradora a <strong>Dra. CARLA OSSUNA</strong>, advogada inscrita na Ordem dos Advogados de Portugal, com cédula profissional sob o Nº 64201L, com morada profissional na Rua Febo Muniz, 27B, Edifício LACS Anjos - Código Postal 1150-152, Lisboa - Portugal, <strong>';
+                'como sua bastante procuradora a <strong>Dra. CARLA OSSUNA</strong>, advogada inscrita na Ordem dos Advogados de Portugal, com cédula profissional sob o Nº 64201L, com morada profissional na Av. Defensores de Chaves 4, 1000-117 - Edifício IDEA - Lisboa - Portugal, ';
             const dadosDrJoseAlberto =
-                'como seu bastante procurador o <strong>Dr. JOSÉ ALBERTO ARAÚJO DE JESUS</strong>, advogado inscrito na Ordem dos Advogados de Portugal, com cédula profissional sob o Nº 68714P, com morada profissional na SHS Quadra 6 Conjunto A Bloco A Sala 501, Complexo Brasil 21, Asa Sul - Código Postal 70316-102, Distrito Federal - Brasil, <strong>';
+                'como seu bastante procurador o <strong>Dr. JOSÉ ALBERTO ARAÚJO DE JESUS</strong>, advogado inscrito na Ordem dos Advogados de Portugal, com cédula profissional sob o Nº 68714P, com morada profissional na SHS Quadra 6 Conjunto A Bloco A Sala 501, Complexo Brasil 21, Asa Sul - Código Postal 70316-102, Distrito Federal - Brasil,';
 
 
             if (tipoProcesso === "netosMaior") {
@@ -276,6 +322,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (tipoProcesso === "netosMenor" && tipoProcuracao === "p") {
                 textoProcura =
                     `<strong>${nomePaiMenor}</strong>, ${nacionalidadePai}, no estado civil de ${estadoCivilPai}, ${profissaoPai}, com residência habitual em ${residenciaPai}, portador do documento de identificação (${tipoDocumentoPai}) n.º ${documentoPai}, com data de expedição em ${dataExpedicaoPai} pelo órgão emissor ${orgaoExpedidorPai}, constitui ${adv === "carlaossuna" ? dadosDraCarlaOssuna : dadosDrJoseAlberto} a quem confere os poderes especiais e necessários para os representar perante a Conservatória dos Registos Centrais de Lisboa/Arquivo Distrital do Porto, ao abrigo do art. 1º, nº 1, al.d) da Lei da Nacionalidade nº 37/81, de 3 de Outubro, com sua posterior alteração pela Lei Orgânica n.º 2/2020, requerer a atribuição da Nacionalidade Portuguesa d${generoLetra} noss${generoLetra} filh${generoLetra} <strong>${nomeMenor}</strong>, nascid${generoLetra} em ${dataNascimentoMenor}, na cidade de ${cidadeNascimentoMenor}, no estado de ${estadoNascimento}, portador${genero === "homem" ? "" : "a"} do documento de identificação (${tipoDocumentoMenor}) n.° ${documentoMenor}, com data de expedição em ${dataDocumentoMenor} pelo órgão ${orgaoExpedidorMenor}, e que seja lavrado o respetivo registo, por ser filh${generoLetra} de <strong>${portugues} ${portugues === "pai" ? "português" : "portuguesa"}</strong>, promovendo, se necessário, a inscrição do respetivo nascimento, fixação do nome, praticando e assinando tudo o que seja necessário ao indicado fim, podendo prestar declarações e substabelecer os poderes que lhe foram conferidos. `;
+            }
+
+            if (tipoProcesso === "homologacaoDivorcio") {
+                textoProcura = `<strong>${nomePt}</strong>, luso-brasileiro(a), ${profissaoPt}, Cartão do Cidadão n° ${cartaoCidadao}, com data de validade em ${dataValidadeCC}, com residência habitual em ${endPt} e <strong>${nomeExConjuge}</strong>, nacionalidade ${nacionalidadeExConjuge}, ${profissaoExConjuge}, portador(a) do documento de identificação n° ${docIdExConjuge}, com data expedição em ${dataExpedicaoExConjuge}, órgão expeditor ${orgaoExpedidorExConjuge}, com residência habitual em ${endExConjuge}, CEP ${cepExConjuge}, ${estadoExConjuge} - Brasil, constituem sua procuradora a <strong>Dra. CARLA OSSUNA,</strong> inscrita na Ordem dos Advogados Portugueses, sob o n. 64201L, com escritório profissional na Rua Febo Muniz, 27B, Edifício LACS Anjos - Código Postal 1150-152, Lisboa - Portugal, a quem conferem poderes especiais para, perante o Tribunal da Relação de Lisboa, requerer a Homologação da Sentença Estrangeira e posterior Transcrição do Divórcio, podendo para o efeito declarar, praticar e assinar tudo o que seja necessário ao indicado fim, nomeadamente a declaração para fins de inscrição de nascimento ou de atribuição da nacionalidade, podendo, se necessário, substabelecer os poderes que lhe forem conferidos.`
             }
 
             function wrapWordHtml({ titulo, corpo, rodapeLocalData, assinatura }) {
@@ -362,7 +412,16 @@ _______________________________________________<br>${nomePaiMenor}<br>`
                     rodapeLocalData: `${cidade} - ${uf}, __________ de _________________ de ${ano}`,
                     assinatura: `_______________________________________________<br>${nome}<br>(Assinatura com firma reconhecida por autenticidade)`
                 });
-            } else {
+            }
+            else if (tipoProcesso === 'homologacaoDivorcio') {
+                conteudo = wrapWordHtml({
+                    titulo: "PROCURAÇÃO",
+                    corpo: textoProcura,
+                    rodapeLocalData: `___________________ - __________, __________ de _________________ de ${ano}`,
+                    assinatura: `_______________________________________________<br>${nomePt}<br>(Assinatura com firma reconhecida por autenticidade)<br><br><br><br>_______________________________________________<br>${nomeExConjuge}<br>(Assinatura com firma reconhecida por autenticidade)`
+                });
+            }
+            else {
                 // Default para adultos (filhosMaiores, netosMaior, matrimonio)
                 conteudo = wrapWordHtml({
                     titulo: tituloPadrao,
