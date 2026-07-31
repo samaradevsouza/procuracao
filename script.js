@@ -287,7 +287,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (tipoProcesso === "transcricao") {
-                const complementoPortugues = (portugues && portugues !== "proprio") ? `, de meus ${portugues}` : "";
+                const complementoPortugues =
+                    portugues === "pai" || portugues === "mãe" || portugues === "pais"
+                        ? ", seus pais"
+                        : portugues === "avô" || portugues === "avó" || portugues === "avós"
+                            ? ", seus avós"
+                            : portugues === "bisavós"
+                                ? ", seus bisavós"
+                                : "";
                 textoProcura =
                     `<strong>${nome}</strong>, nascido em ${dataNascimento}, na cidade de ${cidadeNascimento} – ${ufNascimento}, residente ${residencia}, portador${genero === "homem" ? "" : "a"} do (${tipoDocumento}) nº ${documento}, expedido em ${dataExpedicao} pelo órgão ${orgaoExpedidor}, constitui como sua bastante procuradora a senhora, <strong>Dra. Cinthia Rocha Mello, inscrita na Ordem dos Advogados, sob n.º 64.594C</strong>, com domicilio profissional na Rua Antônio Alves do Espírito Santo, n. 3, Lote 1, 4D, Quinta da Gordalina, Código Postal 2415-440, Leiria, Portugal, a quem confere poderes especiais para requerer a transcrição de casamento entre <strong>${nubente1} e ${nubente2}</strong> ${complementoPortugues} em qualquer Conservatória do Registro Civil, em Portugal, podendo para o efeito declarar, praticar e assinar tudo o que seja necessário ao indicado fim, nomeadamente a declaração para fins de transcrição de casamento, inclusive desistir do pedido, e substabelecer os poderes que lhe foram conferidos.`;
             }
